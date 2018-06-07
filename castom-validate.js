@@ -1,11 +1,14 @@
 var form_validation = {
 
-  email : function (element) {
-      if (! /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/.test($(element).val())) {
-          var error_message = 'Enter a valid email address';
+  login : function (element, number) {
+
+    var regex =  new RegExp('^[0-9]{' + number + '}$');
+
+      if (! /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/.test($(element).val()) && ! regex.test($(element).val())) {
+          var error_message = 'Enter a valid email address or phone number';
           this.add_error(element, error_message);
           return false;
-      }
+      }     
       return true;
   },
 
@@ -41,7 +44,7 @@ $(function () {
                   if ('' == $(element).val()) {
                     valid_data = form_validation.required(element);
                   } else {
-                    valid_data = form_validation.email(element);
+                    valid_data = form_validation.login(element, 11);
                   }
                   break;
               case 'password' :
@@ -58,8 +61,7 @@ $(function () {
 
         getData($(this).serialize())       
             .then(showModal)         
-            .catch(showModalError);         
-   
+            .catch(showModalError);   
         
         // $.post('save.php', $(this).serialize(), function(data){
         //   console.log(data); //callback server <-
@@ -71,10 +73,12 @@ $(function () {
 });
 
 function getData(body){
-    console.log('Ожидание ответа...');
+    console.log('Ожидание ответа...');   
     
-    // Parse string    
-    const end = body.indexOf('%40');
+    
+    // Parse
+    var end = body.indexOf('&');   
+
 
     var promise = new Promise(function(resolve, reject) {
         setTimeout(()=>{
