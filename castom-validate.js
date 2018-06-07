@@ -36,8 +36,8 @@ $(function () {
 
           $(element).removeClass('has-error');
 
-          switch ($(element).attr('type')) {   
-              case 'email' :
+          switch ($(element).attr('name')) {   
+              case 'login' :
                   if ('' == $(element).val()) {
                     valid_data = form_validation.required(element);
                   } else {
@@ -55,11 +55,47 @@ $(function () {
       });
       
       if(valid_data) {   
-        $.post('save.php', $(this).serialize(), function(data){
-          console.log(data); //callback server <-
-          alert(data);
-        });
+
+        getData($(this).serialize())       
+            .then(showModal)         
+            .catch(showModalError);         
+   
+        
+        // $.post('save.php', $(this).serialize(), function(data){
+        //   console.log(data); //callback server <-
+        //   alert(data);
+        // });
         //$('form')[0].submit(); default POST
       }
   });
 });
+
+function getData(body){
+    console.log('Ожидание ответа...');
+    
+    // Parse string    
+    const end = body.indexOf('%40');
+
+    var promise = new Promise(function(resolve, reject) {
+        setTimeout(()=>{
+            let data = {
+                "res": ` ${body.substring(6, end)}, GOOD!`,
+                "err": '500!'
+            };  
+            Math.random() > .5 ?  resolve(data.res) : reject(data.err);
+        }, 2000);        
+      })
+    return promise;
+}
+
+function showModal(data){
+    $('.modal-content').find('div.modal-body').text('Ответ: ' + data).addClass('active').removeClass('inactive');
+    $('#myModal').modal('show');
+    console.log('Данные от сервера: ', data);
+}
+
+function showModalError(err){
+    $('.modal-content').find('div.modal-body').text('Ответ: ' + err).addClass('inactive').removeClass('active');
+    $('#myModal').modal('show');
+    console.log('Ошибка на сервере: ', err)
+}

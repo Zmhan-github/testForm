@@ -4,3 +4,12 @@
 span.message {
   color: red;
 }
+#myBtn {
+  width: 300px;
+  padding: 10px;
+  font-size:20px;
+  position: absolute;
+  margin: 0 auto;
+}
+.active{color: #81C556;}
+.inactive{color: #EE5848;}

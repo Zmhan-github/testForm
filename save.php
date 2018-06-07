@@ -1,3 +1,3 @@
 <?php
 
-echo $_POST['email'] . ' from PHP';
+echo $_POST['login'] . ' from PHP';

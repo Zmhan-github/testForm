@@ -4,10 +4,8 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-
     <link rel="stylesheet" href="castom-validate.css">
     <title>App</title>
   </head>
@@ -17,9 +15,9 @@
       <hr>
       <form action="#">
           <div class="form-group row">
-            <label for="exampleInputEmail1" class="col-sm-2 col-form-label" >Email address</label>
+            <label for="exampleInputEmail1" class="col-sm-2 col-form-label" >Login</label>
             <div class="col-sm-10">
-              <input type="email" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+              <input type="email" class="form-control" id="exampleInputEmail1" name="login" aria-describedby="emailHelp" placeholder="Enter Login">
               <span class="message"></span>
             </div>  
           </div>
@@ -34,12 +32,35 @@
 
           <div class="form-group row">
             <div class="col-sm-10 offset-sm-2">
-              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="submit" class="btn btn-info btn-md" id="myBtn">Submit</button>
             </div>
           </div>
         </form>
     </div>
-   
+     <!-- The Modal -->
+    <div class="modal fade" id="myModal">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+        
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Modal Heading</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          
+          <!-- Modal body -->
+          <div class="modal-body">
+            Modal body..
+          </div>
+          
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+          
+        </div>
+      </div>
+    </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
